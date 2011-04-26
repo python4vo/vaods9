@@ -36,7 +36,21 @@ client.set('contour yes')
 # save contours to file
 client.set('contour save ds9.con wcs fk5')
 
-# Now, let's get some information... let's make a 'basic' get call to retrieve a value from ds9
+# To retrieve information from ds9 you have three options.
+
+# The first one is the most simple, but the least flexible. You can use this method inside python scripts, when you need the script to
+# wait for the DS9 response.
+# The get_now function, in fact, let you call DS9 synchronously: the program waits for DS9
+# to respond (at least unless a timeout occurs) and the response is returned to the program directly.
+# For example:
+contour_scale = client.get_now('contour scale')
+print contour_scale
+
+# The default timeout is 1000 ms, but you can define a different timeout:
+contour_scale = client.get_now('contour scale', timeout=500)
+
+# A 'basic' get call allows to asynchronously retrieve a value from ds9. This can be useful during interactive sessions, in that it doesn't
+# block the python console. You can perform other operations while waiting for a response from DS9, and then retrieve the response:
 client.basic_get('contour scale')
 
 # The value is stored in the client.last_response value 
@@ -44,14 +58,15 @@ print client.last_response
 
 # Under the hood, the vaods9 module is handling the SAMP message reply and it is storing it in the
 # last_response variable.
-# This might be enough: you can use the object stored in the variable in your interactive session.
+
+# These two methods might be enough for basic usage.
 
 # However, with a slightly more advanced approach, you might write your own handler function, that will be called by the module
 # in the background, as soon as an answer is received from ds9 (i.e. asynchronously).
 # All that you have to do is to define a function that takes just one argument, like the following:
 
 def echo(ds9_response):
-   print response
+   print ds9_response
 
 # Be sure to exit from the function definition and get the python prompt before continuing 
 
