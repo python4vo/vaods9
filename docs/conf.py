@@ -180,7 +180,7 @@ latex_font_size = '12pt'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'VAOds9wrapper.tex', u'VAO ds9 wrapper Documentation',
+  ('index', 'vaods9.tex', u'VAO ds9 wrapper Documentation',
    u'Omar Laurino', 'manual'),
 ]
 

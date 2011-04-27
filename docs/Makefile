@@ -6,6 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
+GHPAGES       = ../../gh-pages
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -35,6 +36,19 @@ help:
 
 clean:
 	-rm -rf $(BUILDDIR)/*
+
+gh-pages:
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(GHPAGES)
+	@echo
+	@echo "Build finished. The HTML pages are in $(GHPAGES)"
+
+gh-pages-pdf:
+	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(GHPAGES)/pdf
+	@echo "Running LaTeX files through pdflatex..."
+	make -C $(GHPAGES)/pdf all-pdf
+	-mv $(GHPAGES)/pdf/*.pdf $(GHPAGES)
+	-rm -rf $(GHPAGES)/pdf
+	@echo "pdflatex finished; the PDF files are in $(GHPAGES)]."
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
