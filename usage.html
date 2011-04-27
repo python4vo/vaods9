@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example Usage &mdash; VAO ds9 wrapper v0.2 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VAO ds9 wrapper v0.2 documentation" href="index.html" />
+    <link rel="next" title="Gotchas, Tips and Tricks" href="gotchas.html" />
+    <link rel="prev" title="Welcome to VAO ds9 wrapper’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gotchas.html" title="Gotchas, Tips and Tricks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to VAO ds9 wrapper’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">VAO ds9 wrapper v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/VAO_logo_200.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Example Usage</a><ul>
+<li><a class="reference internal" href="#startup">Startup</a></li>
+<li><a class="reference internal" href="#basic-image-load">Basic Image Load</a></li>
+<li><a class="reference internal" href="#xpa-like-set-commands">XPA like &#8220;set&#8221; commands</a></li>
+<li><a class="reference internal" href="#xpa-like-get-commands">XPA like &#8220;get&#8221; commands</a></li>
+<li><a class="reference internal" href="#cleanup">Cleanup</a></li>
+<li><a class="reference internal" href="#gotchas">Gotchas</a><ul>
+<li><a class="reference internal" href="#set-vs-send-fits-image"><tt class="docutils literal"><span class="pre">set</span></tt> vs <tt class="docutils literal"><span class="pre">send_fits_image</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to VAO ds9 wrapper&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gotchas.html"
+                        title="next chapter">Gotchas, Tips and Tricks</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/usage.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example-usage">
+<h1>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h1>
+<p>This example shows the basic usage of the <a class="reference internal" href="api.html#module-vaods9" title="vaods9"><tt class="xref py py-mod docutils literal"><span class="pre">vaods9</span></tt></a> module.</p>
+<div class="section" id="startup">
+<h2>Startup<a class="headerlink" href="#startup" title="Permalink to this headline">¶</a></h2>
+<p>first of all, let&#8217;s import the <a class="reference internal" href="api.html#module-vaods9" title="vaods9"><tt class="xref py py-mod docutils literal"><span class="pre">vaods9</span></tt></a> module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">vaods9</span>
+</pre></div>
+</div>
+<p>let&#8217;s get an instance of a new <strong class="program">ds9</strong> client (if a SAMP hub is not
+running, a new one is started):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">vaods9</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>launch <strong class="program">ds9</strong> now: it should automatically connect to the running hub.
+While testing the module, you might want to run a graphical
+SAMP hub monitor like the one shipped with Topcat, just to be sure
+<strong class="program">ds9</strong> is connected to the hub.</p>
+</div>
+<div class="section" id="basic-image-load">
+<h2>Basic Image Load<a class="headerlink" href="#basic-image-load" title="Permalink to this headline">¶</a></h2>
+<p>let&#8217;s send a fits image to <strong class="program">ds9</strong>. You can send both relative or
+absolute paths to a local file, or a URL to a
+remote file. Please be sure that <strong class="program">ds9</strong> can read the URL
+(e.g. <strong class="program">ds9</strong> doesn&#8217;t support https):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">send_fits_image</span><span class="p">(</span><span class="s">&#39;an_image&#39;</span><span class="p">,</span> <span class="s">&#39;WFPC2u5780205r_c0fx.fits&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first argument is an arbitrary string defining an ID. I actually
+think <strong class="program">ds9</strong> ignores it.</p>
+</div>
+<div class="section" id="xpa-like-set-commands">
+<h2>XPA like &#8220;set&#8221; commands<a class="headerlink" href="#xpa-like-set-commands" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="api.html#module-vaods9" title="vaods9"><tt class="xref py py-mod docutils literal"><span class="pre">vaods9</span></tt></a> module allows you to use XPA-like <tt class="docutils literal"><span class="pre">set</span></tt> and <tt class="docutils literal"><span class="pre">get</span></tt> syntax
+to interact with <strong class="program">ds9</strong>.  The message types enabled are described on
+the <a class="reference external" href="http://hea-www.harvard.edu/RD/ds9/ref/samp.html">ds9 SAMP website</a>.
+Now, let&#8217;s send some <a class="reference internal" href="api.html#vaods9.Client.set" title="vaods9.Client.set"><tt class="xref py py-func docutils literal"><span class="pre">set()</span></tt></a> commands to <strong class="program">ds9</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;cmap Heat&#39;</span><span class="p">)</span>
+<span class="go"># change the color map</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;zoom to fit&#39;</span><span class="p">)</span>
+<span class="go"># zoom to fit the image panel</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;scale zscale&#39;</span><span class="p">)</span>
+<span class="go"># change scale to zscale</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;contour yes&#39;</span><span class="p">)</span>
+<span class="go"># draw contours</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;contour save ds9.con wcs fk5&#39;</span><span class="p">)</span>
+<span class="go"># save contours to file</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="xpa-like-get-commands">
+<h2>XPA like &#8220;get&#8221; commands<a class="headerlink" href="#xpa-like-get-commands" title="Permalink to this headline">¶</a></h2>
+<p>To retrieve information from <strong class="program">ds9</strong> you have three options.</p>
+<p>The first one is the most simple, but the least flexible. You can use
+this method inside python scripts, when you need the script to wait
+for the <strong class="program">ds9</strong> response. The <a class="reference internal" href="api.html#vaods9.Client.get_now" title="vaods9.Client.get_now"><tt class="xref py py-func docutils literal"><span class="pre">get_now()</span></tt></a> function,
+in fact, let you call <strong class="program">ds9</strong> synchronously: the program waits for <strong class="program">ds9</strong>
+to respond (at least unless a timeout occurs) and the response is
+returned to the program directly.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">contour_scale</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_now</span><span class="p">(</span><span class="s">&#39;contour scale&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">contour_scale</span>
+</pre></div>
+</div>
+<p>The default timeout is 1000 ms, but you can define a different
+timeout:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">contour_scale</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_now</span><span class="p">(</span><span class="s">&#39;contour scale&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="api.html#vaods9.Client.basic_get" title="vaods9.Client.basic_get"><tt class="xref py py-func docutils literal"><span class="pre">basic_get()</span></tt></a> call allows to asynchronously
+retrieve a value from <strong class="program">ds9</strong>. This can be useful during interactive
+sessions, in that it doesn&#8217;t block the python console. You can perform
+other operations while waiting for a response from <strong class="program">ds9</strong>, and then
+retrieve the response:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">basic_get</span><span class="p">(</span><span class="s">&#39;contour scale&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The value is stored in the <tt class="docutils literal"><span class="pre">client.last_response</span></tt> value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">client</span><span class="o">.</span><span class="n">last_response</span>
+</pre></div>
+</div>
+<p>Under the hood, the <a class="reference internal" href="api.html#module-vaods9" title="vaods9"><tt class="xref py py-mod docutils literal"><span class="pre">vaods9</span></tt></a> module is handling the SAMP message
+reply and it is storing it in the last_response variable.</p>
+<p>These two methods might be enough for basic usage.</p>
+<p>However, with a slightly more advanced approach, you might write your
+own handler function, that will be called by the module in the
+background, as soon as an answer is received from <strong class="program">ds9</strong> (i.e.
+asynchronously). All that you have to do is to define a function that
+takes just one argument, like the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">ds9_response</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span> <span class="n">ds9_response</span>
+</pre></div>
+</div>
+<p>Be sure to exit from the function definition and get the python
+prompt before continuing.</p>
+<p>Now, we will make a <em>full</em> <a class="reference internal" href="api.html#vaods9.Client.get" title="vaods9.Client.get"><tt class="xref py py-func docutils literal"><span class="pre">get()</span></tt></a> call to
+<strong class="program">ds9</strong>. This time, we will tell python that we want the echo function
+to handle the <strong class="program">ds9</strong> response automatically:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;contour scale&#39;</span><span class="p">,</span> <span class="n">echo</span><span class="p">)</span>
+<span class="go"># notice that we need just the function name, without quotes.</span>
+</pre></div>
+</div>
+<p>you should see the <strong class="program">ds9</strong> output echoed on your screen.</p>
+</div>
+<div class="section" id="cleanup">
+<h2>Cleanup<a class="headerlink" href="#cleanup" title="Permalink to this headline">¶</a></h2>
+<p>before closing the session let&#8217;s do some
+<a class="reference internal" href="api.html#vaods9.Client.cleanup" title="vaods9.Client.cleanup"><tt class="xref py py-func docutils literal"><span class="pre">cleanup()</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The client will disconnect from any running hub. If we started a new
+hub, it will be closed. If you forget to &#8220;cleanup&#8221; the interactive
+python session will hang and won&#8217;t let you return you to the shell
+prompt.</p>
+</div>
+<div class="section" id="gotchas">
+<h2>Gotchas<a class="headerlink" href="#gotchas" title="Permalink to this headline">¶</a></h2>
+<p>Here are details on couple of issues you might encounter.
+See also <a class="reference internal" href="gotchas.html#gotchas"><em>Gotchas, Tips and Tricks</em></a>.</p>
+<div class="section" id="set-vs-send-fits-image">
+<h3><tt class="docutils literal"><span class="pre">set</span></tt> vs <tt class="docutils literal"><span class="pre">send_fits_image</span></tt><a class="headerlink" href="#set-vs-send-fits-image" title="Permalink to this headline">¶</a></h3>
+<p>If you have a background in using XPA messaging or if you&#8217;ve been
+reading the reference materials on the <a class="reference external" href="http://hea-www.harvard.edu/RD/ds9/ref/samp.html">ds9 SAMP website</a> then you
+might encounter an unexpected behavior when loading images from
+python using the <a class="reference internal" href="api.html#vaods9.Client.set" title="vaods9.Client.set"><tt class="xref py py-func docutils literal"><span class="pre">set()</span></tt></a> instead of the
+<a class="reference internal" href="api.html#vaods9.Client.send_fits_image" title="vaods9.Client.send_fits_image"><tt class="xref py py-func docutils literal"><span class="pre">send_fits_image()</span></tt></a> commands.</p>
+<p>The unexpected behavior occurs when attempting to load image
+via <tt class="docutils literal"><span class="pre">set()</span></tt>  like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;file WFPC2u5780205r_c0fx.fits&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and <strong class="program">ds9</strong> does not react, failing silently. One common cause of this
+behavior is that the XPA like <tt class="docutils literal"><span class="pre">set()</span></tt> assumes that <strong class="program">ds9</strong> is looking
+in the same local directory as the python command line. This is not a
+default behavior. One solution is to always pass <tt class="docutils literal"><span class="pre">set()</span></tt> filenames
+with absolute paths. Another simple check and fix for this is to point
+<strong class="program">ds9</strong> at the local python directory:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">basic_get</span><span class="p">(</span><span class="s">&#39;cd&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">client</span><span class="o">.</span><span class="n">last_response</span> <span class="o">!=</span> <span class="n">p</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;cd </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This <tt class="docutils literal"><span class="pre">set()</span></tt> behavior differs from the <tt class="docutils literal"><span class="pre">send_fits_image</span></tt> function
+(or any of the <tt class="docutils literal"><span class="pre">send_...()</span></tt> functions) because <tt class="docutils literal"><span class="pre">send_fits_image</span></tt>
+internally converts filenames to absolute paths before broadcasting them
+as messages to <strong class="program">ds9</strong> <a class="footnote-reference" href="#g1" id="id1">[1]</a>. The XPA-like <tt class="docutils literal"><span class="pre">set()</span></tt> is too generically
+defined to do this kind of checking.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="g1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The <tt class="docutils literal"><span class="pre">send_...()</span></tt> functions broadcast their messages to <strong>all</strong> applications that are listening for those kind of messages.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gotchas.html" title="Gotchas, Tips and Tricks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to VAO ds9 wrapper’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">VAO ds9 wrapper v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

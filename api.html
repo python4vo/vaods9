@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>vaods9 API &mdash; VAO ds9 wrapper v0.2 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VAO ds9 wrapper v0.2 documentation" href="index.html" />
+    <link rel="prev" title="Gotchas, Tips and Tricks" href="gotchas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gotchas.html" title="Gotchas, Tips and Tricks"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">VAO ds9 wrapper v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/VAO_logo_200.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="gotchas.html"
+                        title="previous chapter">Gotchas, Tips and Tricks</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vaods9">
+<span id="vaods9-api"></span><h1>vaods9 API<a class="headerlink" href="#module-vaods9" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vaods9.Client">
+<em class="property">class </em><tt class="descclassname">vaods9.</tt><tt class="descname">Client</tt><big>(</big><em>name='VAO Python Client'</em>, <em>description='An interactive SAMP client for Python by the Virtual Astronomical Observatory'</em>, <em>version='0.0.1'</em><big>)</big><a class="headerlink" href="#vaods9.Client" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="vaods9.Client.basic_get">
+<tt class="descname">basic_get</tt><big>(</big><em>cmd</em>, <em>url=''</em><big>)</big><a class="headerlink" href="#vaods9.Client.basic_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.basic_handler">
+<tt class="descname">basic_handler</tt><big>(</big><em>private_key</em>, <em>sender_id</em>, <em>msg_id</em>, <em>response</em><big>)</big><a class="headerlink" href="#vaods9.Client.basic_handler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#vaods9.Client.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaods9.Client.ds9_hook">
+<tt class="descname">ds9_hook</tt><a class="headerlink" href="#vaods9.Client.ds9_hook" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaods9.Client.file_url">
+<tt class="descname">file_url</tt><a class="headerlink" href="#vaods9.Client.file_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.get">
+<tt class="descname">get</tt><big>(</big><em>cmd</em>, <em>url=''</em>, <em>tag='vaods9get'</em>, <em>function=&lt;function ds9echo at 0x101ac6140&gt;</em><big>)</big><a class="headerlink" href="#vaods9.Client.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.get_now">
+<tt class="descname">get_now</tt><big>(</big><em>cmd</em>, <em>url=''</em>, <em>tag='vaods9getnow'</em>, <em>timeout=1000</em><big>)</big><a class="headerlink" href="#vaods9.Client.get_now" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.handler_wrapper">
+<tt class="descname">handler_wrapper</tt><big>(</big><em>private_key</em>, <em>sender_id</em>, <em>msg_id</em>, <em>response</em><big>)</big><a class="headerlink" href="#vaods9.Client.handler_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.send">
+<tt class="descname">send</tt><big>(</big><em>mtype</em>, <em>file_id</em>, <em>file_path</em><big>)</big><a class="headerlink" href="#vaods9.Client.send" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.send_fits_image">
+<tt class="descname">send_fits_image</tt><big>(</big><em>name</em>, <em>file_path</em><big>)</big><a class="headerlink" href="#vaods9.Client.send_fits_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.send_fits_table">
+<tt class="descname">send_fits_table</tt><big>(</big><em>name</em>, <em>file_path</em><big>)</big><a class="headerlink" href="#vaods9.Client.send_fits_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.send_votable">
+<tt class="descname">send_votable</tt><big>(</big><em>name</em>, <em>file_path</em><big>)</big><a class="headerlink" href="#vaods9.Client.send_votable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaods9.Client.set">
+<tt class="descname">set</tt><big>(</big><em>cmd</em>, <em>url=''</em><big>)</big><a class="headerlink" href="#vaods9.Client.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="vaods9.ds9echo">
+<tt class="descclassname">vaods9.</tt><tt class="descname">ds9echo</tt><big>(</big><em>response</em><big>)</big><a class="headerlink" href="#vaods9.ds9echo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gotchas.html" title="Gotchas, Tips and Tricks"
+             >previous</a> |</li>
+        <li><a href="index.html">VAO ds9 wrapper v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
