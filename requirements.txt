@@ -1,2 +1,2 @@
-Tkinter==0.0.0
+Tkinter
 sampy==1.2.1
